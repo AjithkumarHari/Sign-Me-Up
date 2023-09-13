@@ -5,9 +5,11 @@ import bcrypt from "bcrypt"
 
 export default{
     signUp : async(userData : User )=>{
+        console.log('signUp');
         return new Promise <User | { signUpError : string }> (async ( resolve, reject)=>{
             const user : User | null = await USER.findOne({email : userData.email})
             if(user){
+                console.log('user exist');
                resolve({signUpError:"User already exist !"}) ;
             }
             else{

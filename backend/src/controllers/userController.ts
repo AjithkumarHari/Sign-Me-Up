@@ -13,12 +13,19 @@ export default{
 
 
     postSignUp  : async (req : Request , res : Response)=>{
+        console.log('postSignUp');
         userHelper.signUp(req.body).then((response : User | { signUpError : string })=>{
             if(response && 'signUpError' in response){
                 res.status(401).json(response.signUpError)
             }else if (response){
+                console.log('success');
+                
                 const token = jwt.createUserToken(response)
-                res.status(200).json([response,token])
+                
+                res.status(200).cookie("jwt",token,{
+                    httpOnly: true,
+                    maxAge : 24*60*60*1000
+                }).json([response,token])
             }
         }).catch(()=>{
             res.send('Failed')
