@@ -7,6 +7,8 @@ import { User } from '../User';
 })
 export class UserServiceService {
 
+  user : any;
+  
   constructor( private http : HttpClient) { }
 
   signup(user : User){

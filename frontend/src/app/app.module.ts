@@ -10,9 +10,12 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { StoreModule } from '@ngrx/store';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { ErrorComponent } from './components/error/error.component';
+import { StoreModule } from '@ngrx/store';
+import { authReducer } from './state/login.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './state/login.effects';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { ErrorComponent } from './components/error/error.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({ auth : authReducer }),
+    EffectsModule.forRoot(AuthEffects)
   ],
   providers: [],
   bootstrap: [AppComponent]
