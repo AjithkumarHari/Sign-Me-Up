@@ -1,5 +1,6 @@
 import { USER } from "../models/userModel";
 import { User } from "../models/user";
+import mongoose from 'mongoose'; 
 import bcrypt from "bcrypt"
 
 
@@ -39,5 +40,48 @@ export default{
                 resolve({ loginError: "User Not Found !" }) ;
             }
         })
-    }
+    },
+
+    edit : (userData : User ,image : string)=>{
+        return new Promise(async (resolve, reject)=>{
+            console.log(userData);
+            let user = await USER.findOne({ email : userData.email })
+            if(user){
+                if(userData.password){
+                    let a = await bcrypt.hash(userData.password,10);
+                    console.log(a);
+                    const user = new USER({
+                        name : userData.name,
+                        email : userData.email,
+                        password : userData.password,
+                        image : image
+                    })
+                    user.save()
+                    .then((response) => {
+                        resolve({name : userData.name, email : userData.email,image:image, _id : user._id})
+                    }) 
+                }else{
+                    const user = new USER({
+                        name : userData.name,
+                        email : userData.email,
+                        image : image
+                    })
+                    user.save()
+                    .then((response) => {
+                        resolve({name : userData.name, email : userData.email,image:image, _id : user._id})
+                    }) 
+                }
+               
+            }
+            
+        })
+    },
+    delete: (userId: string) => {
+        return new Promise((resolve, reject) => {
+            const objectId = new mongoose.Types.ObjectId(userId);                                                                                                                   
+            USER.deleteOne({ _id: objectId }).then((response) => {
+                resolve(response);
+            });
+        });
+    },
 }

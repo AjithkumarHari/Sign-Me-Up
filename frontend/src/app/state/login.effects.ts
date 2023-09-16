@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { UserServiceService } from "../services/user-service.service";
+import { UserService } from "../services/user-service.service";
 import { loginFailure, loginRequest, loginSuccess } from "./login.action";
 import { catchError, map, switchMap, tap } from "rxjs/operators";
 import { of } from "rxjs";
@@ -11,7 +11,7 @@ import { Router } from "@angular/router";
 export class AuthEffects{
 
     constructor( private actions$ : Actions, 
-        private userService : UserServiceService,
+        private userService : UserService,
         private router : Router){}
 
     login$ = createEffect(()=>

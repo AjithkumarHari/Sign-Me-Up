@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/User';
-import { UserServiceService } from 'src/app/services/user-service.service';
+import { UserService } from 'src/app/services/user-service.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { loginRequest } from 'src/app/state/login.action';
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit{
  
 
   constructor(private formBuilder : FormBuilder , 
-    private userService : UserServiceService,
+    private userService : UserService,
     private router : Router,
     private store : Store ){}
   ngOnInit(): void {
@@ -29,8 +29,14 @@ export class LoginComponent implements OnInit{
     })
   }
 
+  get r() {
+    return this.form.controls
+  }
+
 
   onFormSubmit(){
+    console.log(this.form);
+    
     if(this.form.valid){
       const user : User ={
         email : this.form.value.email,
@@ -38,7 +44,7 @@ export class LoginComponent implements OnInit{
       }
       console.log(user);
       
-      this.store.dispatch(loginRequest({credentials : { email : user.email , password : user.password}}))
+      this.store.dispatch(loginRequest({credentials : { email: user.email , password : user.password}}))
       // this.userService.login(user).subscribe({
       //   next : (response:any)=>{
       //     console.log(response[1]);

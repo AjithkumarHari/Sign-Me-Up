@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user-service.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,4 +9,17 @@ import { Component } from '@angular/core';
 })
 export class NavBarComponent {
   title : string = 'Sign Me Up'
+
+  constructor( private userService : UserService, private router : Router){}
+  
+  isLoggedIn(): boolean {
+    if(this.userService.getToken())
+      return true
+    else return false
+  }
+
+  logout(){
+    this.userService.deleteToken();
+    this.router.navigateByUrl('')
+  }
 }

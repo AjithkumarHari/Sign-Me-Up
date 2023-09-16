@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/User';
-import { UserServiceService } from 'src/app/services/user-service.service';
+import { UserService } from 'src/app/services/user-service.service';
 
 
 @Component({
@@ -19,12 +19,12 @@ export class SignupComponent implements OnInit {
     private formBuilder : FormBuilder,
     private http : HttpClient,
     private router : Router,
-    private userService : UserServiceService
+    private userService : UserService
   ) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      name: new FormControl(null, [Validators.required, Validators.maxLength(30), Validators.pattern("^[a-zA-Z\s]+$")]),
+      name: new FormControl(null, [Validators.required, Validators.maxLength(30)]),
       email : new FormControl(null, [Validators.required, Validators.email, Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$")]),
       password : new FormControl(null, [Validators.required, Validators.maxLength(8), Validators.minLength(8)])
     })
@@ -39,7 +39,7 @@ export class SignupComponent implements OnInit {
       }
       this.userService.signup(user).subscribe({
         next: (response) => {
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/login');
         },
         error: (error: HttpErrorResponse) => {
             this.errorMessage = error.error;

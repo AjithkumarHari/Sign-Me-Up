@@ -16,6 +16,10 @@ import { StoreModule } from '@ngrx/store';
 import { authReducer } from './state/login.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './state/login.effects';
+import { AdminHomeComponent } from './components/admin-home/admin-home.component';
+import { AdminLoginComponent } from './components/admin-login/admin-login.component';
+import { ParentComponent } from './components/parent/parent.component';
+import { ChildComponent } from './components/parent/child/child.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import { AuthEffects } from './state/login.effects';
     SignupComponent,
     ProfileComponent,
     EditProfileComponent,
-    ErrorComponent
+    ErrorComponent,
+    AdminHomeComponent,
+    AdminLoginComponent,
+    ParentComponent,
+    ChildComponent
   ],
   imports: [
     BrowserModule,

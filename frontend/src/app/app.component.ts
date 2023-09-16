@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend';
+  admin : any;
+
+  ngDoCheck(): void {
+    this.admin = window.sessionStorage.getItem('admin')
+  }
 }

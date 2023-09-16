@@ -3,15 +3,16 @@
 
     <div class="avatar-upload">
         <div class="avatar-edit">
-            <input type='file' (change)="onImageSelected($event)" id="imageUpload" accept=".png, .jpg, .jpeg" />
+            <input type='file' (change)="onImageSelected($event)"  id="imageUpload" accept=".png, .jpg, .jpeg" />
             <label for="imageUpload"></label>
             
         </div>
-        <div class="avatar-preview">
-            <div id="imagePreview" [style.background-image]="'url(' + imageUrl + ')'">
+        <a (click)="onImgClicked()" >
+            <div class="avatar-preview">
+                <img id="imagePreview" [src]='imageUrl'>
             </div>
-            
-        </div>
+        </a>
+        
        
         <div class="user-data">
             <form [formGroup]="form"  (ngSubmit)="onFormSubmit()">
@@ -21,15 +22,16 @@
                 <label>Email</label>
                 <input type="text" formControlName="email" id="" required>
                 <span *ngIf="!form.get('email')?.valid && !form.get('email')?.untouched">Email must be valid</span>
-                <label>Password</label>
-                <input type="password" formControlName="password" required>
-                <span *ngIf="!form.get('password')?.valid && !form.get('password')?.untouched">Password must have 8 Characters</span>
-               
+                <label>New Password</label>
+                <input type="password" formControlName="newpassword" required>
+                <span *ngIf="!form.get('newpassword')?.valid && !form.get('newpassword')?.untouched">Password must have 8 Characters</span>
+                <label>Confirm Password</label>
+                <input type="password" formControlName="confpassword" required>
+                <span *ngIf="form.get('confpassword')?.hasError('mustMatch')" >Both Passwords Should Match</span>
                 <input type="submit" id="" >
+                <input type="button" value="Cancel" routerLink="/profile" >
             </form>
-    
         </div>
-        
     </div>
     
 </div>
