@@ -21,8 +21,6 @@ ul {
 .nav-list {
     list-style: none; /* Remove list bullets */
     display: flex; /* Display the list items in a row */
-    justify-content:end; /* Evenly distribute items horizontally */
-     /* Add some padding to the top and bottom */
     align-items: center;
 }
 

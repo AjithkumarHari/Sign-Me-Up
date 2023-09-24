@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule} from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +20,8 @@ import { AdminHomeComponent } from './components/admin-home/admin-home.component
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { ParentComponent } from './components/parent/parent.component';
 import { ChildComponent } from './components/parent/child/child.component';
+import { DecimalPipe } from './pipes/decimal-pipe.pipe';
+import { HeaderInterceptor } from './interceptors/header-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { ChildComponent } from './components/parent/child/child.component';
     AdminHomeComponent,
     AdminLoginComponent,
     ParentComponent,
-    ChildComponent
+    ChildComponent,
+    DecimalPipe
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,13 @@ import { ChildComponent } from './components/parent/child/child.component';
     StoreModule.forRoot({ auth : authReducer }),
     EffectsModule.forRoot(AuthEffects)
   ],
-  providers: [],
+  providers: [
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : HeaderInterceptor,
+      multi : true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

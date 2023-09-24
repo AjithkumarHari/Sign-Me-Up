@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { User } from '../User';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,15 +9,16 @@ import { User } from '../User';
 export class UserService {
 
   user : any;
-  
+  serverUrl : string = environment.serverUrl
+
   constructor( private http : HttpClient) { }
 
   signup(user : User){
-    return this.http.post("http://localhost:5000/user/signup", user)
+    return this.http.post(`${this.serverUrl}/user/signup`, user)
   }
 
   login(user : User){
-    return this.http.post("http://localhost:5000/user/login",user)
+    return this.http.post(`${this.serverUrl}/user/login`,user)
   }
 
   setToken(token : string){
@@ -31,29 +33,23 @@ export class UserService {
     return window.sessionStorage.removeItem('token')
   }
 
-  getUser(){
-    const headers = new HttpHeaders()
-        .set('Content-Type', 'application/json')
-        .set('Authorization', 'Bearer ' + this.getToken());
-      console.log("get user service", headers);
-      
-    return this.http.get("http://localhost:5000/user/get-user",{headers})
+  getUser(){     
+    return this.http.get(`${this.serverUrl}/user/get-user`)
   }
 
   update(user : any){
-    return  this.http.put("http://localhost:5000/user/login",user)
+    return  this.http.put(`${this.serverUrl}/user/login`,user)
   }
 
   delete(id: string) {
-    console.log(id);
-    
-    return this.http.post('http://localhost:5000/user/delete',{id})
+    return this.http.post(`${this.serverUrl}/user/delete`,{id})
   }
 
   getAllUsers(){
-    return this.http.get('http://localhost:5000/admin/users')
+    return this.http.get(`${this.serverUrl}/admin/users`)
   }
+
   getSearchUsers(key: string){
-    return this.http.get(`http://localhost:5000/admin/search?searchKey=${key}`)
+    return this.http.get(`${this.serverUrl}/admin/search?searchKey=${key}`)
   }
 }
