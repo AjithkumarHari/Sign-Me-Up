@@ -1,0 +1,14 @@
+input{
+    border-radius: 8px;
+    background-color: #0000006b;
+    border: 1px white solid;
+    font-size: 20px;
+    padding: 5px;
+    color: white;
+}
+div{
+    border: 2px white solid;
+    padding: 20px;
+    background-color: #0000004f;
+    border-radius: 8px;
+}

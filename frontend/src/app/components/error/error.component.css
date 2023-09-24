@@ -1,0 +1,73 @@
+/* Variables */
+:root {
+    --primarycolor: #34559a;
+    --standout: #FFF;
+    --standouthover: #FFF;
+  }
+  
+  /* Body Styles */
+  .container{
+    /* background: linear-gradient(#34559a, darkblue); */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    top: 50%;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  
+  /* Error Styles */
+  .error {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 60%;
+  }
+  
+  .error svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    fill:  #FFF;
+  }
+  
+  /* Links Styles */
+  .links {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: stretch;
+    align-items: flex-start;
+  }
+  
+  .links a {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    border: 1px solid  #FFF;
+    border-radius: 5px;
+    color: #FFF;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+  }
+  
+  .links a:hover {
+    background-color:  #FFF;
+    color:#34559a;
+    text-decoration: none;
+  }
+  
+  /* HTML Styles */
+   
+  
