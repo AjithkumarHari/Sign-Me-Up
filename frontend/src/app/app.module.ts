@@ -22,6 +22,8 @@ import { ParentComponent } from './components/parent/parent.component';
 import { ChildComponent } from './components/parent/child/child.component';
 import { DecimalPipe } from './pipes/decimal-pipe.pipe';
 import { HeaderInterceptor } from './interceptors/header-interceptor.interceptor';
+import { HighlightDirective } from './directives/highlight.directive';
+import { AppNotDirective } from './directives/app-not.directive';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { HeaderInterceptor } from './interceptors/header-interceptor.interceptor
     AdminLoginComponent,
     ParentComponent,
     ChildComponent,
-    DecimalPipe
+    DecimalPipe,
+    HighlightDirective,
+    AppNotDirective,
   ],
   imports: [
     BrowserModule,
