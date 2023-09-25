@@ -18,6 +18,7 @@ export class HeaderInterceptor implements HttpInterceptor {
 
     const authReq = request.clone({
       setHeaders : {
+        'ExapleHeader' : 'Sample Data',
         'Content-Type' : 'application/json',
         Authorization : ` Bearer ${userService.getToken()}`
       }

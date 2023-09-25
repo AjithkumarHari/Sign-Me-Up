@@ -12,10 +12,10 @@ import { AdminHomeComponent } from './components/admin-home/admin-home.component
 
 const routes: Routes = [
   { path : '' , component : HomeComponent},
-  { path : 'login', component : LoginComponent},
-  { path : 'signup', component : SignupComponent},
+  { path : 'login', component : LoginComponent },
+  { path : 'signup', component : SignupComponent },
   { path : 'profile', component : ProfileComponent, canActivate : [UserAuthGuard]},
-  { path : 'editProfile', component : EditProfileComponent},
+  { path : 'editProfile', component : EditProfileComponent, canActivate : [UserAuthGuard]},
   { path : 'adminLogin', component : AdminLoginComponent},
   { path : 'adminHome', component : AdminHomeComponent},
   { path : '**', component : ErrorComponent}
